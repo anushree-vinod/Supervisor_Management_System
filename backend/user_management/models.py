@@ -31,6 +31,9 @@ class Student(models.Model):
 class Supervisor(models.Model):
     user = models.OneToOneField(BaseUser, on_delete=models.CASCADE, primary_key=True)
     department = models.CharField(max_length=100)
-
+    research_interests = models.TextField(blank=True, null=True) 
+    publications = models.TextField(blank=True, null=True)
+    available_projects = models.IntegerField(default=0)  
+    
     def __str__(self):
         return f"{self.first_name} {self.last_name} (Supervisor - {self.department})"

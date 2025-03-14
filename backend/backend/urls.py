@@ -19,4 +19,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user_management/', include('user_management.urls')),
+    path('supervisors/', include('supervisors.urls')),  # Include supervisor URLs here
+    path('projects/', include('projects.urls')),
+    path('dissertation_declarations/', include('dissertation_declarations.urls')),
 ]
