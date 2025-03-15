@@ -41,18 +41,18 @@ const Dashboard = () => {
   if (loading) {
     return <div>Loading...</div>; // Show loading while fetching data
   }
-
+  
   return (
     <div style={styles.dashboardContainer}>
       <h2 style={styles.title}>Supervisor Dashboard</h2>
       <div style={styles.cardsContainer}>
         <div style={styles.card}>
-          <h3>Research Projects</h3>
-          <p>{data.completedProjects}</p>
+          <h3 style={styles.cardTitle}>Research Projects</h3>
+          <p style={styles.cardContent}>{data.completedProjects}</p>
         </div>
         <div style={styles.card}>
-          <h3>Supervisees</h3>
-          <p>{data.supervisees}</p>
+          <h3 style={styles.cardTitle}>Supervisees</h3>
+          <p style={styles.cardContent}>{data.supervisees}</p>
         </div>
       </div>
     </div>
@@ -62,34 +62,53 @@ const Dashboard = () => {
 // Define styles with proper typing
 const styles: { [key: string]: React.CSSProperties } = {
   dashboardContainer: {
-    display: 'flex',               // Use flexbox for centering the content
-    justifyContent: 'center',      // Center horizontally
-    alignItems: 'center',          // Center vertically
-    height: '100vh',               // Full viewport height
-    flexDirection: 'column',       // Stack title above the cards
-    textAlign: 'center',           // Center text inside the container
-    marginLeft: "400px",
+    display: 'flex',               
+    justifyContent: 'center',      
+    alignItems: 'center',          
+    height: '100vh',               
+    flexDirection: 'column',       
+    textAlign: 'center',           
+    margin: "0",              
+    padding: '20px',         
+    width: '100%'      
   },
   title: {
-    fontSize: '24px',              // Adjust title font size
-    marginBottom: '30px',          // Space between title and cards
+    fontSize: '32px',              
+    fontWeight: 'bold',            
+    marginBottom: '30px',          
+    color: '#5b8fa9',                 
   },
   cardsContainer: {
-    display: 'flex',               // Use flex to align cards side by side
-    justifyContent: 'center',      // Center cards horizontally
-    alignItems: 'center',          // Ensure cards are vertically centered as well
-    gap: '30px',                   // Add space between the cards
+    display: 'flex',               
+    justifyContent: 'center',      
+    alignItems: 'center',          
+    gap: '20px',                   
+    flexWrap: 'wrap',              
   },
   card: {
-    border: '1px solid #ccc',
-    padding: '20px',
-    width: '200px',                // Fixed width for consistent card size
-    height: '150px',               // Fixed height for consistent card size
-    boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
-    display: 'flex',               // Flexbox inside the card
-    flexDirection: 'column',       // Stack content vertically inside card
-    alignItems: 'center',          // Center content horizontally inside card
-    justifyContent: 'center',      // Center content vertically inside card
+    border: '1px solid #ddd',     
+    padding: '20px',               
+    width: '250px',                
+    height: '180px',               
+    borderRadius: '8px',           
+    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',  
+    display: 'flex',               
+    flexDirection: 'column',       
+    alignItems: 'center',          
+    justifyContent: 'center',      
+    backgroundColor: 'white',      
+    transition: 'none',  
+  },
+  cardTitle: {
+    fontSize: '20px',              
+    fontWeight: '600',             
+    color: '#007bff',              
+    marginBottom: '10px',          
+  },
+  cardContent: {
+    fontSize: '24px',              
+    color: '#333',                 
+    fontWeight: 'bold',            
   },
 };
 

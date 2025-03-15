@@ -19,7 +19,7 @@ const Header: React.FC = () => {
 
 const styles: { [key: string]: React.CSSProperties } = {
   header: {
-    backgroundColor: "#444",
+    backgroundColor: "#417690",
     color: "#fff",
     padding: "20px 20px",
     display: "flex",
@@ -30,6 +30,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     top: 0,
     left: 0,
     zIndex: 1000,
+    height: "50px",
   },
   title: {
     fontSize: "27px",
@@ -38,14 +39,14 @@ const styles: { [key: string]: React.CSSProperties } = {
   navContainer: {
     display: "flex",
     gap: "5px",         //Adds spacing between buttons
-    padding: "0px 70px"
+    padding: "0px 30px"
   },
   navButton: {
     color: "#fff",
     textDecoration: "none",
     fontSize: "16px",
     padding: "10px 15px",
-    backgroundColor: "#555",
+    backgroundColor: "#264b5d",
     borderRadius: "10px",
     transition: "background 0.3s",
     textAlign: "center",

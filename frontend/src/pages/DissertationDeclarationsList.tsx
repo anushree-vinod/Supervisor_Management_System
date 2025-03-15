@@ -30,10 +30,20 @@ const DissertationDeclarationsList: React.FC = () => {
         <ul style={{ listStyleType: 'none', padding: 0, textAlign: 'left' }}>
           {declarations.length > 0 ? (
             declarations.map((declarations) => (
-              <li key={declarations.id} style={{ padding: '20px', borderBottom: '1px solid #ccc' }}>
+              <li key={declarations.id} style={{
+                padding: '20px',
+                border: '1px solid #ccc',  
+                borderRadius: '8px',  
+                marginBottom: '20px',  
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+              }}>
                 {/* Making the topic clickable */}
                 <h3>
-                  <Link to={`/declarations/${declarations.id}`} style={{ textDecoration: 'none', color: '#000' }}>
+                  <Link to={`/declarations/${declarations.id}`} style={{ 
+                    color: '#007bff',
+                    textDecoration: 'underline',
+                    cursor: 'pointer'
+                     }}>
                     {declarations.topic}
                   </Link>
                 </h3>  

@@ -18,6 +18,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     backgroundColor: "#333",
     color: "#fff",
     textAlign: "center",
+    height: "40px",
+    lineHeight: "10px",
     //padding: "1px 1px",
   },
 };
