@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -21,12 +21,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6p+lz08*6svm$od^hv+ni63&t3(jl0h0@yh2@0imw&_-@f7u68'
+# SECRET_KEY = 'django-insecure-6p+lz08*6svm$od^hv+ni63&t3(jl0h0@yh2@0imw&_-@f7u68'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-6p+lz08*6svm$od^hv+ni63&t3(jl0h0@yh2@0imw&_-@f7u68')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -45,9 +46,6 @@ INSTALLED_APPS = [
     'supervisors',
     'projects',
     'dissertation_declarations',
-    #'students',
- 
-    # 'notifications',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware'
+    'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -143,7 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # React app port
+    "https://anushree-vinod.github.io/",  # React app port
 ]
 
 REST_FRAMEWORK = {
@@ -161,3 +160,10 @@ SIMPLE_JWT = {
 }
 
 AUTH_USER_MODEL = "user_management.BaseUser"
+
+STATIC_URL = '/static/'
+
+# The directory where static files will be collected
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Use WhiteNoise to serve static files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
