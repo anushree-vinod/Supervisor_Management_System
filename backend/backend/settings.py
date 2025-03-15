@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+import dj_database_url
 from pathlib import Path
 from datetime import timedelta
 
@@ -84,15 +85,24 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'supervisor_db',
-        'USER': 'supervisor_db_user',
-        'PASSWORD': 'sx63o7WgIyMvmQQuh3EKssqihuemR6U7',
-        'HOST': 'dpg-cvar4e7noe9s73feapng-a.frankfurt-postgres.render.com',
-        'PORT': '5432',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'supervisor_db',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
     }
+else:
+    DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default=os.environ.get('DATABASE_URL', None),
+        conn_max_age=600
+    )
 }
 
 
@@ -128,22 +138,23 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
-CORS_ALLOWED_ORIGINS = [
-    "https://anushree-vinod.github.io",  # React app port
-]
+
+if DEBUG:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:5173"
+    ]
+
+else:
+    CORS_ALLOWED_ORIGINS = [
+        "https://anushree-vinod.github.io",  # React app port
+    ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -163,7 +174,8 @@ AUTH_USER_MODEL = "user_management.BaseUser"
 
 STATIC_URL = '/static/'
 
-# The directory where static files will be collected
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# Use WhiteNoise to serve static files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+if not DEBUG:
+    # The directory where static files will be collected
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Use WhiteNoise to serve static files
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
