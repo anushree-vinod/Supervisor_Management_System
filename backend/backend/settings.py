@@ -88,9 +88,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'supervisor_db',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'USER': 'supervisor_db_user',
+        'PASSWORD': 'sx63o7WgIyMvmQQuh3EKssqihuemR6U7',
+        'HOST': 'dpg-cvar4e7noe9s73feapng-a.frankfurt-postgres.render.com',
         'PORT': '5432',
     }
 }
@@ -142,7 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 CORS_ALLOWED_ORIGINS = [
-    "https://anushree-vinod.github.io/",  # React app port
+    "https://anushree-vinod.github.io",  # React app port
 ]
 
 REST_FRAMEWORK = {
