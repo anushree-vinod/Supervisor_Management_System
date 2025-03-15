@@ -17,6 +17,7 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.5.10",
     "axios": "^1.8.1",
+    "dotenv": "^16.4.7",
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.10.2",
     "react": "^19.0.0",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@types/node": "^22.13.10",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
