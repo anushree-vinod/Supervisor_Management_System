@@ -8,5 +8,5 @@ dotenv.config();
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: process.env.DEBUG === 'false' || !process.env.DEBUG ? '/Supervisor_Management_System/' : '/',
+  base: '/',
 })
