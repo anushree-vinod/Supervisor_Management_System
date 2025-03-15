@@ -24,7 +24,7 @@ def list_projects(request):
 def project_detail(request, project_id):
     """Retrieve a single project's details."""
     try:
-        project = ResearchProject.objects.get(id=project_id, is_active=True)
+        project = ResearchProject.objects.get(id=project_id)
         serializer = ResearchProjectSerializer(project)
         return Response(serializer.data, status=status.HTTP_200_OK)
     except ResearchProject.DoesNotExist:
