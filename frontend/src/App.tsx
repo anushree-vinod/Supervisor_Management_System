@@ -10,6 +10,7 @@ import ProjectDetail from './pages/ProjectDetail'
 import DissertationDeclarationsList from './pages/DissertationDeclarationsList'; 
 import DissertationDeclarationDetail from './pages/DissertationDeclarationDetail';
 import StudentOutreach from "./pages/StudentOutreach";
+import apiClient from './utils/api';
 
 const App: React.FC = () => {
   return (
@@ -37,15 +38,31 @@ const RedirectIfNotLoggedIn: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const isLoggedIn = Boolean(localStorage.getItem('access_token')); // Check if the user is logged in
-    if (!isLoggedIn) {
-      navigate('/login'); // Redirect to login if not logged in
-    } else {
-      navigate('/dashboard'); // Otherwise, proceed to the dashboard
-    }
+    const checkBackendAndAuth = async () => {
+      try {
+        // Try fetching something lightweight to check backend connectivity
+        await apiClient.get('/user_management/ping/');
+        localStorage.setItem('dummy_mode', 'false');  // Backend is accessible — no dummy mode
+      } catch (error) {
+        console.warn('Backend unreachable. Enabling dummy mode.');
+        localStorage.setItem('dummy_mode', 'true');  // Enable dummy mode if backend is unreachable
+      }
+    };
+
+    checkBackendAndAuth();
   }, [navigate]);
 
-  return null; // Don't render anything here
+  useEffect(() => {
+      if(localStorage.getItem('dummy_mode') === 'true'){
+       navigate('/dashboard') 
+      }
+      else {
+        const isLoggedIn = Boolean(localStorage.getItem('access_token'));
+        navigate(isLoggedIn ? '/dashboard' : '/login');
+      }
+  }, [navigate]);
+
+  return null;  // No UI, just redirection logic
 };
 
 export default App;

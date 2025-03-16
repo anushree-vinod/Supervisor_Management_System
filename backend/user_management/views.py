@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.exceptions import TokenError, InvalidToken
 from django.contrib.auth import authenticate, login
@@ -42,3 +42,9 @@ def login_user(request):
         raise InvalidToken(e.args[0])
     
     return Response(serializer.validated_data, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+@permission_classes([permissions.AllowAny])
+def ping(request):
+    # Respond with 200 OK for a successful request.
+    return Response("Pong!", status=status.HTTP_200_OK)
