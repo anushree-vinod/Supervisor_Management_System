@@ -28,7 +28,7 @@ const ProjectDetail: React.FC = () => {
   }, [id]);
 
   // Use the custom hook with fallback to dummy data
-  const { data: project, loading, error } = useFetchWithFallback<ProjectDetail>(
+  const { data: project, loading} = useFetchWithFallback<ProjectDetail>(
     fetchProjectDetails,
     dummyProjectDetail  // Fallback to dummy project data
   );
