@@ -1,7 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
+
+  const navigate = useNavigate();
+
+  const isLoggedIn = Boolean(localStorage.getItem('access_token'));
+
+  const handleLogout = () => {
+    // Clear user session (remove from localStorage, context, etc.)
+    localStorage.clear();
+    // Redirect to the login page or home
+    navigate("/login");
+  };
+
   return (
     <header style={styles.header}>
       <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -12,6 +24,11 @@ const Header: React.FC = () => {
         <Link to="/add-project" style={styles.navButton}>Add Projects</Link>
         <Link to="/declarations" style={styles.navButton}>Dissertation Declarations</Link>
         <Link to="/student-outreach" style={styles.navButton}>Student Outreach</Link>
+        {isLoggedIn && (
+        <button style={styles.logoutButton} onClick={handleLogout}>
+          Logout
+        </button>
+      )}
       </div>
     </header>
   );
@@ -47,6 +64,20 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "16px",
     padding: "10px 15px",
     backgroundColor: "#264b5d",
+    borderRadius: "10px",
+    transition: "background 0.3s",
+    textAlign: "center",
+    minWidth: "100px", //  Ensures uniform button width
+    marginLeft: "50px"
+  },
+  logoutButton: {
+    backgroundColor: "red",
+    color: "white",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "16px",
+    padding: "10px 15px",
+    textDecoration: "none",
     borderRadius: "10px",
     transition: "background 0.3s",
     textAlign: "center",

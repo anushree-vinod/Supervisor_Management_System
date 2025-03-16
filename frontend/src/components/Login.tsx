@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');  // Renamed to match the variable name for consistency
   const [password, setPassword] = useState('');
+  const [successMessage, setSuccessMessage] = useState(''); // Success message
   const [error, setError] = useState('');  // New state to store error messages
   const navigate = useNavigate();
 
@@ -23,11 +24,14 @@ const Login: React.FC = () => {
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
 
-      // Optionally, you can display success and redirect
-      alert('Login successful!');
-      navigate('/');  // Redirect to the dashboard or another protected route
+      setSuccessMessage("Login Successful");
+      setTimeout(() => {
+        navigate("/"); // Navigate to the dashboard or another protected route
+      }, 1000);
+
     } catch (error: any) {
       console.error('Login failed:', error);
+      setSuccessMessage("");
       if (error.response) {
         // Handle different error statuses more gracefully (e.g. wrong credentials)
         setError(error.response.data.detail || 'Invalid username or password');
@@ -71,6 +75,10 @@ const Login: React.FC = () => {
           Login
         </button>
       </form>
+
+      {/* Show success message if available */}
+      {successMessage && <div style={{color: "green", marginTop: "10px", fontSize: "16px"}}>{successMessage}</div>}
+
     </div>
   );
 };
