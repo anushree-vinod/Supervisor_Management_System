@@ -16,22 +16,17 @@ export const dummyProjects = [
     }
   ];
   
-  export const dummyProjectDetail = [
+  export const dummyProjectDetail = 
     {
         id: 1,
-        name: 'AI-Powered Chatbot',
+        title: 'AI-Powered Chatbot',
         description: 'This project involves building a chatbot that leverages natural language processing to provide instant responses to common user inquiries. It aims to improve customer service efficiency and enhance user engagement.',
         requirements: 'Python, NLP',
+         is_active: 'true',
         assigned_student : 'Jane Doe'
-    },
-    {
-        id: 2,
-        name: 'Smart Irrigation System',
-        description: 'A project focused on optimizing water usage in agriculture using IoT sensors and automation.',
-        requirements: 'Python, IOT, Arduino',
-        assigned_student : 'Alice Fletcher'
-    }
-];
+      };
+   
+
   export const dummyDissertationDeclarations = [
     {
       id: 1,
