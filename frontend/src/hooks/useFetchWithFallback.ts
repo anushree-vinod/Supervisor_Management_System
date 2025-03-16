@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import apiClient from '../utils/api';
+
 
 export function useFetchWithFallback<T>(fetchData: () => Promise<T>, fallbackData: T) {
   const [data, setData] = useState<T>(fallbackData);
