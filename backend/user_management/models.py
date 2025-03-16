@@ -39,4 +39,4 @@ class Supervisor(models.Model):
     available_projects = models.IntegerField(default=0)  
     
     def __str__(self):
-        return f"{self.first_name} {self.last_name} (Supervisor - {self.department})"
+        return f"{self.user.first_name} {self.user.last_name} (Supervisor - {self.department})"
