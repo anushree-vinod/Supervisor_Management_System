@@ -19,7 +19,6 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<RedirectIfNotLoggedIn />} />
-          <Route path="/Supervisor_Management_System/" element={<RedirectIfNotLoggedIn />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/add-project" element={<AddProject />} />
           <Route path="/project-list" element={<ProjectList />} />
