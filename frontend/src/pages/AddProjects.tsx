@@ -13,7 +13,8 @@ const AddProject: React.FC = () => {
     e.preventDefault();
     try {
       const accessToken = localStorage.getItem('access_token'); // Ensure user is authenticated
-      const response = await apiClient.post(
+      // const response = 
+      await apiClient.post(
         '/projects/create/',  // Replace with your Django API endpoint
         { title, description,requirements },
         { headers: { Authorization: `Bearer ${accessToken}` } }

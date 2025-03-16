@@ -5,8 +5,6 @@ import * as dotenv from 'dotenv';
 // Load environment variables from .env file
 dotenv.config();
 
-console.log("Test");
-
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
